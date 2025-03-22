@@ -12,8 +12,8 @@ on:
 
 env:
   # TODO: Change variable to your image's name.
-  DOCKERHUB_IMAGE_NAME: thomx/fr24feed-piaware
-  GHCR_IMAGE_NAME: thom-x/docker-fr24feed-piaware-dump1090
+  DOCKERHUB_IMAGE_NAME: eckstueck/fr24feed-piaware
+  GHCR_IMAGE_NAME: eckstueck/docker-fr24feed-piaware-dump1090
 
 jobs:
   # Run tests.
