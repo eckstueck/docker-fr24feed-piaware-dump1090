@@ -279,6 +279,22 @@ RUN dpkg --add-architecture armhf && \
     make install && \
     ldconfig && \
     rm -rf /tmp/rtl-sdr && \
+    # RTL-SDR v4
+    apt purge -y ^librtlsdr && \
+    rm -rvf /usr/lib/librtlsdr* /usr/include/rtl-sdr* /usr/local/lib/librtlsdr* /usr/local/include/rtl-sdr* /usr/local/include/rtl_* /usr/local/bin/rtl_*  && \
+    apt-get install -y libusb-1.0-0-dev git cmake pkg-config && \
+    cd /tmp && \
+    git clone https://github.com/rtlsdrblog/rtl-sdr-blog && \
+    cd rtl-sdr-blog && \
+    mkdir build && \
+    cd build && \
+    cmake ../ -DINSTALL_UDEV_RULES=ON && \
+    make && \
+    make install && \
+    cp ../rtl-sdr.rules /etc/udev/rules.d/ && \
+    ldconfig && \
+    echo 'blacklist dvb_usb_rtl28xxu' | tee --append /etc/modprobe.d/blacklist-dvb_usb_rtl28xxu.conf && \
+    rm -rf /tmp/rtl-sdr-blog && \
     # Install dependencies
     apt-get install -y \
     procps \
