@@ -295,6 +295,7 @@ RUN dpkg --add-architecture armhf && \
     rm -rf /var/cache/ldconfig/aux-cache && \
     ldconfig && \
     echo 'blacklist dvb_usb_rtl28xxu' | tee --append /etc/modprobe.d/blacklist-dvb_usb_rtl28xxu.conf && \
+    rmmod dvb_usb_rtl28xxu && \
     rm -rf /tmp/rtl-sdr-blog && \
     # Install dependencies
     apt-get install -y \
