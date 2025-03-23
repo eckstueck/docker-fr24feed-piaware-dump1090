@@ -1,7 +1,7 @@
 version: "3.7"
 services:
   fr24feed-piaware:
-    image: "thomx/fr24feed-piaware"
+    image: "eckstueck/fr24feed-piaware"
     restart: unless-stopped
     volumes:
       - /etc/localtime:/etc/localtime:ro # needed to sync time for MLAT
