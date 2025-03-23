@@ -292,7 +292,7 @@ RUN dpkg --add-architecture armhf && \
     make && \
     make install && \
     cp ../rtl-sdr.rules /etc/udev/rules.d/ && \
-    rm - rf /var/cache/ldconfig/aux-cache && \
+    rm -rf /var/cache/ldconfig/aux-cache && \
     ldconfig && \
     echo 'blacklist dvb_usb_rtl28xxu' | tee --append /etc/modprobe.d/blacklist-dvb_usb_rtl28xxu.conf && \
     rm -rf /tmp/rtl-sdr-blog && \
