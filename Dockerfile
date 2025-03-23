@@ -288,7 +288,7 @@ RUN dpkg --add-architecture armhf && \
     cd rtl-sdr-blog && \
     mkdir build && \
     cd build && \
-    cmake ../ -DINSTALL_UDEV_RULES=ON && \
+    cmake ../ -DINSTALL_UDEV_RULES=ON -DDETACH_KERNEL_DRIVER=ON && \
     make && \
     make install && \
     cp ../rtl-sdr.rules /etc/udev/rules.d/ && \
