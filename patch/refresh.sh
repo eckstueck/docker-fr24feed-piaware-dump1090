@@ -10,7 +10,7 @@ if [ -z "${DUMP1090_VERSION}" ]; then
 fi
 
 # Define the file to download and the folders to work in
-URL=https://github.com/flightaware/dump1090/archive/${DUMP1090_VERSION}.tar.gz
+URL=https://github.com/flightaware/dump1090/archive/refs/tags/${DUMP1090_VERSION}.tar.gz
 DIR=`dirname "$(readlink -f "$0")"`
 UPSTREAM=$DIR/upstream
 MODIFIED=$DIR/modified
@@ -23,7 +23,7 @@ mkdir -p $UPSTREAM
 UPSTREAM_RELEASE_FILE=/tmp/flightaware_dump1090_${DUMP1090_VERSION}.tar.gz
 if [ ! -f "${UPSTREAM_RELEASE_FILE}" ]; then
   echo "Downloading flightaware/dump1090 release ${DUMP1090_VERSION}"
-  wget -O ${UPSTREAM_RELEASE_FILE} $URL
+  curl -L -o ${UPSTREAM_RELEASE_FILE} $URL
 fi
 tar xzf ${UPSTREAM_RELEASE_FILE} --directory=$UPSTREAM
 # Don't delete the downloaded file if in DEVEL mode, so as not to have to redownload it
@@ -42,7 +42,7 @@ if [ ! -z "${DEVEL}" ]; then
   DUMMY_AIRCRAFTS_FILE=$DIR/resources/aircraft.json
   if [ ! -f "${DUMMY_AIRCRAFTS_FILE}" ]; then
     echo "Downloading dummy aircraft.json file"
-    wget -O ${DUMMY_AIRCRAFTS_FILE} https://docker-fr24feed-piaware-dump1090.netlify.app/data/aircraft.json
+    curl -L -o ${DUMMY_AIRCRAFTS_FILE} https://docker-fr24feed-piaware-dump1090.netlify.app/data/aircraft.json
   fi
   if [ -f "${DUMMY_AIRCRAFTS_FILE}" ]; then
     mkdir -p $MODIFIED/public_html/data/
